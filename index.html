@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="UTF-8">
+<title>Киім Таңдау Жүйесі</title>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", sans-serif;
+    }
+
+    body {
+        background: linear-gradient(135deg, #43cea2, #185a9d);
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        color: #fff;
+    }
+
+    .container {
+        width: 400px;
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(12px);
+        padding: 30px;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+        animation: fadeIn 0.5s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    h2 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    input {
+        width: 100%;
+        padding: 12px;
+        border-radius: 10px;
+        border: none;
+        outline: none;
+        font-size: 16px;
+        margin-bottom: 15px;
+    }
+
+    button {
+        width: 100%;
+        padding: 12px;
+        border-radius: 12px;
+        border: none;
+        background: #ffcc00;
+        color: black;
+        font-size: 18px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: 0.3s;
+    }
+
+    button:hover {
+        background: #ffdb4d;
+        transform: translateY(-2px);
+    }
+
+    .result {
+        margin-top: 20px;
+        padding: 15px;
+        background: rgba(255,255,255,0.2);
+        border-left: 4px solid #fff;
+        border-radius: 10px;
+        font-size: 17px;
+        font-weight: 500;
+        min-height: 50px;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h2>👕 Киім Таңдау</h2>
+    <label>Ауа температурасын енгізіңіз (°C):</label>
+    <input type="number" id="temperature" placeholder="Мысалы: 15">
+    <button onclick="chooseClothes()">Таңдау</button>
+    <div id="result" class="result"></div>
+</div>
+
+<script>
+function chooseClothes() {
+    const temp = parseFloat(document.getElementById("temperature").value);
+    const result = document.getElementById("result");
+
+    if (isNaN(temp)) {
+        result.innerHTML = "❗ Температураны дұрыс енгізіңіз!";
+        return;
+    }
+
+    // Алгоритмдік шарттар
+    if (temp > 20) {
+        result.innerHTML = "🌞 Жеңіл киім киіңіз (футболка, шорт).";
+    } else if (temp > 10) {
+        result.innerHTML = "🧥 Жеңіл күртеше киіңіз.";
+    } else if (temp > 0) {
+        result.innerHTML = "🧤 Қалың күртеше киіңіз.";
+    } else {
+        result.innerHTML = "❄️ Суық киімдер киіңіз (пальто, бас киім, қолғап).";
+    }
+}
+</script>
+
+</body>
+</html>
